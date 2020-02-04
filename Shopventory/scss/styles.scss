@@ -1,0 +1,155 @@
+// Colors
+$white: #fff;
+$primary-grey: #575652;
+
+// Font Stacks
+$font-primary: 'Raleway', sans-serif;
+
+// Display
+$flexbox: flex;
+
+// Base Styles
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	line-height: 1.5;
+	font-family: $font-primary;
+}
+
+h1 {
+	margin: 0;
+	padding: 1rem 0 0;
+	font-weight: normal;
+	font-size: 1.5rem;
+}
+
+h2 {
+	max-width: 1000px;
+	margin: 1.5rem auto;
+	text-decoration: underline;
+}
+
+ul {
+	list-style: none;
+}
+
+nav {
+	margin: 0.5rem 0;
+	ul {
+		display: $flexbox;
+		margin: 0;
+		padding: 0;
+		li {
+			flex: 1 0 auto;
+			display: inline-block;
+			a {
+				color: $white;
+				&:focus,
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}
+
+section {
+	padding: 0 2rem;
+	color: $primary-grey;
+	font-size: 1rem;
+	&:first-child {
+		color: $white;
+		background: rgb(20,110,181);
+		background: linear-gradient(45deg, rgba(20,110,181,1) 0%, rgba(118,216,159,1) 100%);
+	}
+}
+
+// Mixins
+@mixin flexboxColumn {
+	display: $flexbox;
+	flex-direction: column;
+	max-width: 1000px;
+	margin: auto;
+}
+
+// Components
+.flex {
+	@include flexboxColumn;
+	h1,
+	nav {
+		flex: 1;
+	}
+}
+
+.flex_second {
+	@include flexboxColumn;
+	div {
+		flex: 1;
+	}
+	p:not(:first-child) {
+		font-size: 0.75rem;
+	}
+}
+
+.image_placeholder {
+	display: block;
+	width: 100%;
+	max-width: 300px;
+	height: 150px;
+	margin: 0 auto 2rem;
+	background-color: #000;
+}
+
+.breeds {
+	max-width: 1000px;
+	margin: auto;
+	padding-left: 0;
+	font-size: 1.25rem;
+	text-transform: capitalize;
+	li:not(:first-child) {
+		padding-top: 1rem;
+	}
+}
+
+
+//Media Queries
+@media(min-width:768px) {
+
+	.flex {
+		flex-direction: row;
+		h1,
+		nav {
+			align-self: center;
+		}
+		nav {
+			margin: 0;
+			ul {
+				justify-content: flex-end;
+				li {
+					flex: 0 0 auto;
+					&:not(:last-child) {
+						padding-right: 1.5rem;
+					}
+				}
+			}
+		}
+	}
+	.flex_second {
+		flex-direction: row;
+		margin-top: 1rem;
+		padding-bottom: 1rem;
+		div:not(:first-child) {
+			flex-grow: 1.8;
+		}
+	}
+
+	.image_placeholder {
+		height: 175px;
+		width: 300px;
+		margin: 0 0 2rem auto;
+	}
+
+}
